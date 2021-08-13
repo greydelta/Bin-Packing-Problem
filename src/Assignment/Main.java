@@ -1,3 +1,48 @@
+package Assignment;
+import java.util.*;
+import java.io.*;
+import java.util.concurrent.TimeUnit;
+
+public class Main {
+	// ----------------------------------- [ VARIABLES ]
+	private Scanner scan;
+	private Controller control;
+	
+	// ----------------------------------- [ ASSUMPTION VARIABLES ]
+	private int truckCapacity = 0;
+	private int tempAvailableCapacity = 0;
+	private ArrayList<Integer> inputDataPackages = new ArrayList<>();
+	// ----------------------------------- [ CONSTRUCTOR ]
+	public Main() {
+		scan = null;
+		control = null;
+	}
+	
+	// ----------------------------------- [ ACCESSOR METHODS ]
+	public void setScanner(Scanner scan) {
+		this.scan = scan;
+	}
+	
+	public void setController(Controller cont) {
+		this.control = cont;
+	}
+	
+	public void setTruckCapacity(int truckCapacity) {
+		this.truckCapacity = truckCapacity;
+	}
+	
+	public void setTempAvailableCapacity(int tempAvailableCapacity) {
+		this.tempAvailableCapacity = tempAvailableCapacity;
+	}
+	
+	public void addToInputDataPackages(int inputData) {
+		inputDataPackages.add(inputData);
+	}
+	
+	public void clearInputDataPackages() {
+		inputDataPackages.clear();
+	}
+	
 	// B1 : Method to initiate program Main Menu
 	public void initiate() {
 		int mainMenuChoice = -1, userInputFlag = -1, algorithmType =-1;
@@ -70,3 +115,4 @@
 			count++;
 		}
 	}
+}
