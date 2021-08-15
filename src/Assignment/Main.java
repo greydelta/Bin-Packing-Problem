@@ -115,4 +115,39 @@ public class Main {
 			count++;
 		}
 	}
+	
+	// B3 : Method to get data from user input
+	public int promptUserInput() {
+		clearInputDataPackages();
+		int input = 0, userInputFlag = -1;
+		System.out.println("\n<<Using user input data>>");
+		System.out.println("=====================================================================================");
+		System.out.println(" This process involves user entering Truck & Package data as follows: ");
+		System.out.println("\t1. User enters Truck Capacity (maximum is 1000 KG/1 Tonne)");
+		System.out.println("\t2. User enters All Packages (weight)");
+		System.out.println("\t(loop until user enters (0) to quit)");
+		System.out.println("\t\tIF user enters any value > 0 && value <= Truck Capacity");
+		System.out.println("\t\t\tTHEN insert into data");
+		System.out.println("\t\tELSE IF user enters value = 0");
+		System.out.println("\t\t\tTHEN terminate data input process");
+		System.out.println("=====================================================================================");
+		System.out.println("\n<<Enter Truck Capacity>>");
+		this.truckCapacity = intInput(1, 1000, 1);
+		System.out.println("\n<<Enter all packages>>");
+		System.out.println("**Enter (0) to STOP/TERMINATE input package process");
+		int iteration = 0;
+		do {
+			iteration++;
+			System.out.print("Enter Weight for Package("+ iteration +"): ");
+			input = intInput(0, truckCapacity, 1);
+			if (input != 0)
+				addToInputDataPackages(input);
+			else
+				if(iteration == 1){
+					userInputFlag = 1;
+					break;
+				}
+		} while (input != 0);
+		return userInputFlag;
+	}
 }
