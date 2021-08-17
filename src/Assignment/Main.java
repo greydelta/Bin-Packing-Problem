@@ -150,4 +150,35 @@ public class Main {
 		} while (input != 0);
 		return userInputFlag;
 	}
+	
+	// B4 : Method to sort packages in decreasing order
+	public ArrayList<Integer> sortPackages(ArrayList<Integer> data){
+		Collections.sort(data, Collections.reverseOrder());
+		return data;
+	}
+	
+	// B5 : Method to load data from (text/user) and according to algorithm (NF/BFD)
+	public int loadData(int inputType, int algorithmType, ArrayList<Integer> inputDataPackages) {
+		control.clearAllPackages();
+		control.clearAllTrucks();
+		/* inputType(1) = Text File
+		 * inputType(2) = User Input
+		 * choice(1) = NextFit()
+		 * choice(2) = BestFitDecreasing()
+		 */
+		if(algorithmType != 1)
+			inputDataPackages = sortPackages(inputDataPackages);
+		
+		int packageID = -1;
+		for(int count = 0; count<inputDataPackages.size(); count++) {
+			packageID++;
+			control.add(new Package(packageID, inputDataPackages.get(count)));
+		}
+		System.out.println("Loaded "+control.getTotalNumOfPackages()+" instances of package");
+		if (inputType == 1)
+			displayLoadedData(1);
+		else
+			displayLoadedData(2);
+		return algorithmType;
+	}
 }
