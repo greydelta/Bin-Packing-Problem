@@ -181,4 +181,23 @@ public class Main {
 			displayLoadedData(2);
 		return algorithmType;
 	}
+	
+	// B6 : Method to display loaded data
+	public void displayLoadedData(int type) {
+		int count = 0;
+		if(type == 1)
+			System.out.println("\n<<Loaded data from text file>>");
+		else
+			System.out.println("\n<<Received data from user>>");
+		System.out.println("Truck Capacity: " + truckCapacity);
+		System.out.print("Packages: ");
+		ArrayList<Package> temp = control.getAllPackages();
+		for(Package tempPackage: temp) {
+			count++;
+			System.out.print(tempPackage.get_weight());
+			if(count != control.getTotalNumOfPackages())
+				System.out.print(", ");
+		}
+		System.out.print("\n");
+	}
 }
