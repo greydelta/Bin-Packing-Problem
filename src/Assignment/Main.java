@@ -200,4 +200,37 @@ public class Main {
 		}
 		System.out.print("\n");
 	}
+	public int computeAvailableCapacity(int truckAvailableCapacity, int packageWeight) {
+		// if truck is FULL or is -VE capacity
+		if (truckAvailableCapacity == 0 || truckAvailableCapacity < packageWeight) 
+			return -1;
+		else
+			return truckAvailableCapacity - packageWeight;
+	}
+	public void NextFit(Package currentPackage) {
+		int availableCapacity = -1, tempTruckID = -1;
+		ArrayList<Truck> rawTruck = control.getAllTrucks();
+		Truck processingTruck = rawTruck.get(rawTruck.size() - 1);
+		availableCapacity = computeAvailableCapacity(processingTruck.get_available_capacity(), currentPackage.get_weight());
+
+		System.out.print("\t  "+currentPackage.get_weight()+" \tTruck("+processingTruck.get_id()+") / Available("+availableCapacity+")\t");
+		if (availableCapacity > 0) // (Condition 1) Package can fit into current Truck
+			tempTruckID = processingTruck.get_id();
+		else if (availableCapacity <= 0) // (Condition 2) Package cannot fit into current Truck
+			tempTruckID = -1;
+		// << ACTION >>
+		if (tempTruckID != -1) { // SCENARIO 1: FIT PERFECTLY / CAN FIT
+			
+			// (Action 1) > Load into Truck
+			control.loadTruck(tempTruckID, currentPackage, availableCapacity);
+			System.out.println("\tloadIntoTruck(" + tempTruckID + ")");
+		} 
+		else { // SCENARIO 2: CAN'T FIT INTO ANY TRUCK 
+			
+			// (Action 2) > Create New Truck + Load into newly created Truck
+			control.add(new Truck(control.getTotalNumOfTrucks(), truckCapacity, currentPackage));
+			System.out.println("createNewTruck(" + (control.getTotalNumOfTrucks() - 1) + ") + loadIntoTruck("+ (control.getTotalNumOfTrucks() - 1) + ")");
+		}
+		System.out.println("_____________________________________________________________________________________");
+	}
 }
