@@ -214,6 +214,10 @@ public class Main {
 		availableCapacity = computeAvailableCapacity(processingTruck.get_available_capacity(), currentPackage.get_weight());
 
 		System.out.print("\t  "+currentPackage.get_weight()+" \tTruck("+processingTruck.get_id()+") / Available("+availableCapacity+")\t");
+		/* The current truck (active) + package combination has to go through the following conditions; then decide either one of these actions:
+		 * 1. Load into Truck
+		 * 2. Create new Truck + Load into Truck
+		*/
 		if (availableCapacity > 0) // (Condition 1) Package can fit into current Truck
 			tempTruckID = processingTruck.get_id();
 		else if (availableCapacity <= 0) // (Condition 2) Package cannot fit into current Truck
@@ -232,5 +236,20 @@ public class Main {
 			System.out.println("createNewTruck(" + (control.getTotalNumOfTrucks() - 1) + ") + loadIntoTruck("+ (control.getTotalNumOfTrucks() - 1) + ")");
 		}
 		System.out.println("_____________________________________________________________________________________");
+	}
+	public void displayResults() {
+		ArrayList<Truck> rawTrucks = control.getAllTrucks();
+		
+		System.out.println("\n<<Overall Results>>");
+		for (Truck tempTruck : rawTrucks) {
+			System.out.print("Truck(" + tempTruck.get_id() + ") | Remaining(" + tempTruck.get_available_capacity() + ") | Packages: ");
+			Stack<Package> packagesInTruck = tempTruck.getPacakgeInTruck();
+			while (!packagesInTruck.empty()) {
+				Package temp = packagesInTruck.pop();
+				System.out.print(temp.get_weight() + " ");
+			}
+			System.out.print("\n");
+		}
+		System.out.println("\nOptimal number of trucks (bins) used to pack "+ control.getTotalNumOfPackages() +" packages is "+ control.getTotalNumOfTrucks()+ " trucks");
 	}
 }
