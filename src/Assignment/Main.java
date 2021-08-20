@@ -252,6 +252,24 @@ public class Main {
 		}
 		System.out.println("\nOptimal number of trucks (bins) used to pack "+ control.getTotalNumOfPackages() +" packages is "+ control.getTotalNumOfTrucks()+ " trucks");
 	}
+	public int intInput(int x, int y, int type) {
+		int data = -1, doWhile = -1;
+		do {
+			if (type == 0)
+				System.out.print(">>Choice: ");
+			else
+				System.out.print(">>Input: ");
+			try {
+				data = intInputValidation(x, y);
+				doWhile = 1;
+			} catch (IllegalArgumentException e) {
+				System.err.println(e.getMessage());
+				delayFor5Miliseconds();
+				doWhile = 0;
+			}
+		} while (doWhile != 1);
+		return data;
+	}
 	public int intInputValidation(int lower, int upper) throws IllegalArgumentException {
 		setScanner(new Scanner(System.in));
 		int userInput;
@@ -282,5 +300,12 @@ public class Main {
 				return userInput;
 		} else
 			throw new IllegalArgumentException("\nEnter integers Only!");
+	}
+	public void delayFor5Miliseconds() {
+		try {
+			TimeUnit.MILLISECONDS.sleep(500);
+		} catch (InterruptedException e1) {
+			System.err.print(e1.getMessage());
+		}
 	}
 }
