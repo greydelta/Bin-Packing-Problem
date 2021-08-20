@@ -252,4 +252,35 @@ public class Main {
 		}
 		System.out.println("\nOptimal number of trucks (bins) used to pack "+ control.getTotalNumOfPackages() +" packages is "+ control.getTotalNumOfTrucks()+ " trucks");
 	}
+	public int intInputValidation(int lower, int upper) throws IllegalArgumentException {
+		setScanner(new Scanner(System.in));
+		int userInput;
+		if (scan.hasNextLine()) {
+			String tempString = scan.nextLine();
+			// Check if blank / only whitespace
+			if (tempString.isEmpty() == true)
+				throw new IllegalArgumentException("\nNot allowed to enter blank values!");
+			else
+				// Check if is valid integer
+				try {
+					userInput = Integer.parseInt(tempString);
+				} catch (NumberFormatException e) {
+					throw new IllegalArgumentException("\nEnter integers Only!");
+				}
+
+			// Check if range is the same, if yes, can only enter that value
+			if (lower == upper)
+				if (userInput != lower)
+					throw new IllegalArgumentException("\nEnter " + lower + " only!");
+				else
+					return userInput;
+
+			// Check if it is within range
+			if (userInput < lower || userInput > upper)
+				throw new IllegalArgumentException("\nEnter values between " + lower + " and " + upper + " only!");
+			else
+				return userInput;
+		} else
+			throw new IllegalArgumentException("\nEnter integers Only!");
+	}
 }
