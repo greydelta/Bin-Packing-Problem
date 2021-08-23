@@ -237,6 +237,20 @@ public class Main {
 		}
 		System.out.println("_____________________________________________________________________________________");
 	}
+	public void BestFitDecreasing(Package currentPackage) {
+		for (Truck processingTruck : rawTruck) {
+			availableCapacity = computeAvailableCapacity(processingTruck.get_available_capacity(), currentPackage.get_weight());
+			
+			System.out.print("\t  "+currentPackage.get_weight()+" \tTruck("+processingTruck.get_id()+") / Available("+availableCapacity+")\t");
+			if(count != control.getTotalNumOfTrucks())
+				System.out.print("\n");
+			
+			/* Each truck + package combination has to go through the following conditions; then decide either one of these actions:
+			 * 1. Load into Truck
+			 * 2. Create new Truck + Load into Truck
+			*/
+		}
+	}
 	public void displayResults() {
 		ArrayList<Truck> rawTrucks = control.getAllTrucks();
 		
