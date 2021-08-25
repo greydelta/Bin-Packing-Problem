@@ -214,10 +214,12 @@ public class Main {
 		availableCapacity = computeAvailableCapacity(processingTruck.get_available_capacity(), currentPackage.get_weight());
 
 		System.out.print("\t  "+currentPackage.get_weight()+" \tTruck("+processingTruck.get_id()+") / Available("+availableCapacity+")\t");
+		
 		/* The current truck (active) + package combination has to go through the following conditions; then decide either one of these actions:
 		 * 1. Load into Truck
 		 * 2. Create new Truck + Load into Truck
 		*/
+		// << CONDITION >>
 		if (availableCapacity > 0) // (Condition 1) Package can fit into current Truck
 			tempTruckID = processingTruck.get_id();
 		else if (availableCapacity <= 0) // (Condition 2) Package cannot fit into current Truck
@@ -249,6 +251,21 @@ public class Main {
 			 * 1. Load into Truck
 			 * 2. Create new Truck + Load into Truck
 			*/
+			
+			// << CONDITION >>
+			if (availableCapacity >= 0) { // (Condition 1) Package can fit into current Truck
+				// CHOOSE the truck with least remaining space | if >=2 truck's remaining space is the same, load into first one
+				if(availableCapacity < tempAvail) {  
+					tempAvail = availableCapacity;
+					tempTruckID = processingTruck.get_id();
+				}
+				continue;
+			} 
+			else if(availableCapacity < 0) // (Condition 2) Package cannot fit into current Truck
+				continue;
+			else if(count == control.getTotalNumOfTrucks()) // CONTINUE checking REMAINING trucks
+				break;
+		}
 		}
 	}
 	public void displayResults() {
