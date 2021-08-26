@@ -200,6 +200,40 @@ public class Main {
 		}
 		System.out.print("\n");
 	}
+	// C1 : Method to initiate NextFit/BestFitDecreasing algorithm
+	public void initiateAlgorithm(int algorithmType) {
+		int truckID = 0, count = 0;
+		setTempAvailableCapacity(truckCapacity);
+		
+		// STEP 01: Initial run (create initial truck)
+		// ===========================================
+		control.add(new Truck(truckID, truckCapacity));
+		
+		// STEP 02: Get all packages
+		ArrayList<Package> rawPackage = control.getAllPackages();
+		
+		if(algorithmType == 1)
+			System.out.print("\n<<Next Fit (NF) Algorithm>>");
+		else
+			System.out.print("\n<<Best Fit Decreasing (BFD) Algorithm>>");
+		System.out.print("\n=====================================================================================");
+		System.out.print("\nSteps\tPackage\tCondition\t\t\tAction");
+		System.out.println("\n=====================================================================================");
+		
+		// STEP 03: For each package
+		for(Package processingPackage: rawPackage) {
+			System.out.print("\nStep "+ ++count);
+			
+			// STEP 04: Initiate algorithm to fit package into truck
+			if(algorithmType == 1)
+				NextFit(processingPackage);
+			else
+				BestFitDecreasing(processingPackage); 
+		}
+		displayResults();
+	}
+
+	// C2 : Method to calculate available capacity for each (truck + package) combination
 	public int computeAvailableCapacity(int truckAvailableCapacity, int packageWeight) {
 		// if truck is FULL or is -VE capacity
 		if (truckAvailableCapacity == 0 || truckAvailableCapacity < packageWeight) 
@@ -207,6 +241,8 @@ public class Main {
 		else
 			return truckAvailableCapacity - packageWeight;
 	}
+	
+	// C3 : Method to implement Next Fit algorithm
 	public void NextFit(Package currentPackage) {
 		int availableCapacity = -1, tempTruckID = -1;
 		ArrayList<Truck> rawTruck = control.getAllTrucks();
@@ -239,8 +275,12 @@ public class Main {
 		}
 		System.out.println("_____________________________________________________________________________________");
 	}
+
+	// C4 : Method to implement Best Fit Decreasing algorithm
 	public void BestFitDecreasing(Package currentPackage) {
 		for (Truck processingTruck : rawTruck) {
+			count++;
+			
 			availableCapacity = computeAvailableCapacity(processingTruck.get_available_capacity(), currentPackage.get_weight());
 			
 			System.out.print("\t  "+currentPackage.get_weight()+" \tTruck("+processingTruck.get_id()+") / Available("+availableCapacity+")\t");
@@ -268,6 +308,8 @@ public class Main {
 		}
 		}
 	}
+	
+	// C5 : Method to display results (total bins used)
 	public void displayResults() {
 		ArrayList<Truck> rawTrucks = control.getAllTrucks();
 		
