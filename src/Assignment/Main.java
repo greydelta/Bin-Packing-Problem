@@ -1,3 +1,26 @@
+/* A) Assignment Assumptions:
+ * PACKAGE DETAILS:
+ * 1. WEIGHT
+ * 		- Measured only in KG (only in Integer)
+ * 
+ * 2. SIZE
+ * 		- Assume that company has estimated that the load limit for each truck has taken into account the size of parcel (regardless of how big or small)
+ * 		- Hence, size is disregarded in the calculation of the two following approximation algorithms
+ * 
+ * 3. NUM OF PACKAGES
+ * 		- Any number of packages is acceptable
+ * 
+ * TRUCK DETAILS:
+ * 1. LOAD LIMIT
+ * 		- Each truck has a load limit of:
+ * 			i) 10/100/1000KG (using text file)
+ * 			ii) is dynamic and can be specified by user (using user input)
+ * 		- Package weight cannot be > truck capacity
+ * 
+ * SUMMARY:
+ * 		In each delivery batch, the algorithm would determine which PACKAGE should be loaded into which TRUCK.
+ * 		
+ */
 package Assignment;
 import java.util.*;
 import java.io.*;
@@ -341,6 +364,7 @@ public class Main {
 		}
 		System.out.println("\nOptimal number of trucks (bins) used to pack "+ control.getTotalNumOfPackages() +" packages is "+ control.getTotalNumOfTrucks()+ " trucks");
 	}
+	// D1 : Combination of Method D2 and D3
 	public int intInput(int x, int y, int type) {
 		int data = -1, doWhile = -1;
 		do {
@@ -359,6 +383,8 @@ public class Main {
 		} while (doWhile != 1);
 		return data;
 	}
+	
+	// D2 : Method for integer input validation
 	public int intInputValidation(int lower, int upper) throws IllegalArgumentException {
 		setScanner(new Scanner(System.in));
 		int userInput;
@@ -390,6 +416,8 @@ public class Main {
 		} else
 			throw new IllegalArgumentException("\nEnter integers Only!");
 	}
+ 
+	// Method D3 : Delay execution for 5 seconds
 	public void delayFor5Miliseconds() {
 		try {
 			TimeUnit.MILLISECONDS.sleep(500);
