@@ -278,6 +278,8 @@ public class Main {
 
 	// C4 : Method to implement Best Fit Decreasing algorithm
 	public void BestFitDecreasing(Package currentPackage) {
+		int availableCapacity = -1, count = 0, tempTruckID =- 1, tempAvail = tempAvailableCapacity;
+		ArrayList<Truck> rawTruck = control.getAllTrucks();
 		for (Truck processingTruck : rawTruck) {
 			count++;
 			
