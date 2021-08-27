@@ -306,7 +306,21 @@ public class Main {
 			else if(count == control.getTotalNumOfTrucks()) // CONTINUE checking REMAINING trucks
 				break;
 		}
+		
+		// << ACTION >>
+		if(tempTruckID != -1) { // SCENARIO 1: FIT PERFECTLY / CAN FIT
+			
+			// (Action 1) > Load into Truck - with least avail space
+			control.loadTruck(tempTruckID, currentPackage, tempAvail);
+			System.out.println("\tloadIntoTruck("+tempTruckID+")");
 		}
+		else if(count == control.getTotalNumOfTrucks()) { // SCENARIO 2: CAN'T FIT INTO ANY TRUCK 
+			
+			// (Action 2) > Create New Truck + Load into newly created Truck
+			control.add(new Truck(control.getTotalNumOfTrucks(), truckCapacity, currentPackage));
+			System.out.println("createNewTruck("+(control.getTotalNumOfTrucks()-1)+") + loadIntoTruck("+(control.getTotalNumOfTrucks()-1)+")");	
+		}
+		System.out.println("_____________________________________________________________________________________");
 	}
 	
 	// C5 : Method to display results (total bins used)
