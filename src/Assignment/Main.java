@@ -30,6 +30,12 @@
  * 2. Algorithms
  * 		- Feasible Solution: Next Fit
  * 		- Optimal Solution: Best Fit Decreasing
+ * 
+ * 3. Implementation
+ * 		- Both algorithms are utilizing:
+ * 			- ArrayList to store the incoming packages / trucks
+ * 			- Stack to store processed packages (in truck)
+ * 
  * C) User Manual
  * 1. The program is driven by a main menu which allows user to choose to:
  * 		A. use existing data in text file
