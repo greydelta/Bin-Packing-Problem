@@ -20,6 +20,31 @@
  * SUMMARY:
  * 		In each delivery batch, the algorithm would determine which PACKAGE should be loaded into which TRUCK.
  * 		
+ * 	Section A: Constructor/Accessor methods
+ * 		public void setTruckCapacity(int truckCapacity)
+ * 		public void setTempAvailableCapacity(int tempAvailableCapacity)
+ * 		public void addToInputDataPackages(int inputData)
+ * 		public void clearInputDataPackages()
+ * 
+ * 	Section B : Navigation/Data Processing methods
+ * 		public void initiate()
+ * 		public void getDataFromFile()
+ * 		public int promptUserInput()
+ * 		public ArrayList<Integer> sortPackages(ArrayList<Integer> data)
+ * 		public int loadData(int inputType, int algorithmType, ArrayList<Integer> inputDataPackages)
+ * 		public void displayLoadedData(int type)
+ * 
+ * 	Section C : Algorithm methods
+ * 		public void initiateAlgorithm(int algorithmType)
+ * 		public int computeAvailableCapacity(int truckAvailableCapacity, int packageWeight)
+ * 		public void NextFit(Package currentPackage)
+ * 		public void BestFitDecreasing(Package currentPackage)
+ * 		public void displayResults()
+ * 
+ * 	Section D : Exception/Error handling methods
+ * 		public int intInput(int x, int y, int type)
+ * 		public int intInputValidation(int lower, int upper) throws IllegalArgumentException
+ * 		public void delayFor5Miliseconds()
  */
 package Assignment;
 import java.util.*;
@@ -35,6 +60,11 @@ public class Main {
 	private int truckCapacity = 0;
 	private int tempAvailableCapacity = 0;
 	private ArrayList<Integer> inputDataPackages = new ArrayList<>();
+	
+	/* -------------------------------------------------------------------
+	 * ------------ Section A : Constructor/Accessor methods -------------
+	 * ------------------------------------------------------------------- */
+	
 	// ----------------------------------- [ CONSTRUCTOR ]
 	public Main() {
 		scan = null;
@@ -65,6 +95,10 @@ public class Main {
 	public void clearInputDataPackages() {
 		inputDataPackages.clear();
 	}
+	
+	/* -------------------------------------------------------------------
+	 * --------- Section B : Navigation/Data Processing methods ----------
+	 * ------------------------------------------------------------------- */
 	
 	// B1 : Method to initiate program Main Menu
 	public void initiate() {
@@ -223,6 +257,11 @@ public class Main {
 		}
 		System.out.print("\n");
 	}
+	
+	/* -------------------------------------------------------------------
+	 * ----------------- Section C : Algorithm methods -------------------
+	 * ------------------------------------------------------------------- */
+	
 	// C1 : Method to initiate NextFit/BestFitDecreasing algorithm
 	public void initiateAlgorithm(int algorithmType) {
 		int truckID = 0, count = 0;
@@ -393,6 +432,11 @@ public class Main {
 		}
 		System.out.println("\nOptimal number of trucks (bins) used to pack "+ control.getTotalNumOfPackages() +" packages is "+ control.getTotalNumOfTrucks()+ " trucks");
 	}
+	
+	/* -------------------------------------------------------------------
+	 * ---------- Section D : Exception/Error handling methods -----------
+	 * ------------------------------------------------------------------- */
+	
 	// D1 : Combination of Method D2 and D3
 	public int intInput(int x, int y, int type) {
 		int data = -1, doWhile = -1;
