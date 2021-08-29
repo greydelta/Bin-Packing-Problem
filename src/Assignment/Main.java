@@ -20,10 +20,17 @@
  * SUMMARY:
  * 		In each delivery batch, the algorithm would determine which PACKAGE should be loaded into which TRUCK.
  * 		
+ * B) Assignment Details:
+ * 1. Terms
  * 		- Trucks = bins
  * 		- truckCapacity = capacity
  * 		- Packages = objects
  * 		- Package Weight = size
+ * 
+ * 2. Algorithms
+ * 		- Feasible Solution: Next Fit
+ * 		- Optimal Solution: Best Fit Decreasing
+ * C) User Manual
  * 1. The program is driven by a main menu which allows user to choose to:
  * 		A. use existing data in text file
  * 			- program behavior will take the very first value of the text file as truck capacity
@@ -32,6 +39,9 @@
  * 		B. manually enter data input
  * 			- program will prompt user to enter truck capacity / all packages
  * 			- program will continue to prompt user for packages data input until user enters "0" to stop the process
+ * 
+ * D) Structure for methods in Main.java
+ * 
  * 	Section A: Constructor/Accessor methods
  * 		public void setTruckCapacity(int truckCapacity)
  * 		public void setTempAvailableCapacity(int tempAvailableCapacity)
