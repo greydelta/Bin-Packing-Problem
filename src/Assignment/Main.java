@@ -268,8 +268,17 @@ public class Main {
 	// C3 : Method to implement Next Fit algorithm
 	public void NextFit(Package currentPackage) {
 		int availableCapacity = -1, tempTruckID = -1;
+
+		// (NF) STEP 05: Get all trucks
+		// ============================
 		ArrayList<Truck> rawTruck = control.getAllTrucks();
+		
+		// (NF) STEP 06: Get current (active) truck
+		// ========================================
 		Truck processingTruck = rawTruck.get(rawTruck.size() - 1);
+
+		// (NF) STEP 07: Calculate Available Capacity (for loading the current package into the current truck)
+		// ===================================================================================================
 		availableCapacity = computeAvailableCapacity(processingTruck.get_available_capacity(), currentPackage.get_weight());
 
 		System.out.print("\t  "+currentPackage.get_weight()+" \tTruck("+processingTruck.get_id()+") / Available("+availableCapacity+")\t");
@@ -278,11 +287,17 @@ public class Main {
 		 * 1. Load into Truck
 		 * 2. Create new Truck + Load into Truck
 		*/
+		
+		// (NF) STEP 08: Determine which condition is fulfilled
+		// =====================================================
 		// << CONDITION >>
 		if (availableCapacity > 0) // (Condition 1) Package can fit into current Truck
 			tempTruckID = processingTruck.get_id();
 		else if (availableCapacity <= 0) // (Condition 2) Package cannot fit into current Truck
 			tempTruckID = -1;
+
+		// (NF) STEP 09: Take appropriate action
+		// =====================================
 		// << ACTION >>
 		if (tempTruckID != -1) { // SCENARIO 1: FIT PERFECTLY / CAN FIT
 			
@@ -302,10 +317,18 @@ public class Main {
 	// C4 : Method to implement Best Fit Decreasing algorithm
 	public void BestFitDecreasing(Package currentPackage) {
 		int availableCapacity = -1, count = 0, tempTruckID =- 1, tempAvail = tempAvailableCapacity;
+		
+		// (BFD) STEP 05: Get all trucks
+		// =============================
 		ArrayList<Truck> rawTruck = control.getAllTrucks();
+		
+		// (BFD) STEP 06: For each truck
+		// =============================
 		for (Truck processingTruck : rawTruck) {
 			count++;
 			
+			// (BFD) STEP 07: Calculate Available Capacity (for loading the current package into the current truck)
+			// ====================================================================================================
 			availableCapacity = computeAvailableCapacity(processingTruck.get_available_capacity(), currentPackage.get_weight());
 			
 			System.out.print("\t  "+currentPackage.get_weight()+" \tTruck("+processingTruck.get_id()+") / Available("+availableCapacity+")\t");
@@ -317,6 +340,8 @@ public class Main {
 			 * 2. Create new Truck + Load into Truck
 			*/
 			
+			// (BFD) STEP 08: Determine which condition is fulfilled
+			// =====================================================
 			// << CONDITION >>
 			if (availableCapacity >= 0) { // (Condition 1) Package can fit into current Truck
 				// CHOOSE the truck with least remaining space | if >=2 truck's remaining space is the same, load into first one
@@ -332,6 +357,8 @@ public class Main {
 				break;
 		}
 		
+		// (BFD) STEP 09: Take appropriate action
+		// ======================================
 		// << ACTION >>
 		if(tempTruckID != -1) { // SCENARIO 1: FIT PERFECTLY / CAN FIT
 			
@@ -352,6 +379,8 @@ public class Main {
 	public void displayResults() {
 		ArrayList<Truck> rawTrucks = control.getAllTrucks();
 		
+		// STEP 10: Display total trucks used
+		// ==================================
 		System.out.println("\n<<Overall Results>>");
 		for (Truck tempTruck : rawTrucks) {
 			System.out.print("Truck(" + tempTruck.get_id() + ") | Remaining(" + tempTruck.get_available_capacity() + ") | Packages: ");
