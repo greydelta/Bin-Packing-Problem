@@ -1,8 +1,6 @@
 package Assignment;
 import java.util.*;
 
-import Assignment.Package;
-
 public class Controller {
 
 	// ----------------------------------- [ VARIABLES ]
