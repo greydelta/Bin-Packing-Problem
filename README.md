@@ -35,7 +35,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![program visual representation][product-screenshot]](https://example.com)
+[![program visual representation][product-screenshot]](#)
 
 This program aims to demonstrate the use of algorithms to solve the bin packing problem and choose the optimal solution.
 
@@ -44,19 +44,34 @@ The bin packing problem is defined by 2 properties, which are the item sizes and
 * bin capacity = Truck load
 * item size = Package weight
 
-In each delivery batch, the algorithm would determine which PACKAGE should be loaded into which TRUCK.
+In each delivery batch, the algorithm would determine which **PACKAGE** should be loaded into which **TRUCK**.
 
 The program will require the user to input:
 * Truck capacity / load
 * The weight of the packages
 
+Or conversely, use data from the existing data files:
+* Make changes accordingly in `Main.java`, under Method B2 - `getDataFromFile()`
+
 The program will then generate the solutions based on the 2 algorithms:
-* Next Fit Algorithm (Feasible solution)
-* Best Fit Decreasing Algorithm (Optimal solution)
+* Next Fit Algorithm (_Feasible solution_)
+* Best Fit Decreasing Algorithm (_Optimal solution_)
+
+#### Assumptions:
+1. Weight ----> Measured only in KG (only in Integer)
+2. Num of Packages ----> Any number of packages is acceptable
+3. Size --->
+- Assume that company has estimated that the load limit for each truck has taken into account the size of parcel (regardless of how big or small)
+- Hence, physical size is disregarded in the calculation of the two following approximation algorithms
+
+
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
+### Sample Output
+[![program sample output 1][product-screenshot1]](#)
 
+<p align="right">(<a href="#top">back to top</a>)</p>
 
 ### Built With
 
@@ -140,3 +155,4 @@ Project Link: [https://github.com/greydelta/bin-packing-problem](https://github.
 [issues-shield]: https://img.shields.io/github/issues/greydelta/bin-packing-problem.svg?style=for-the-badge
 [issues-url]: https://github.com/greydelta/bin-packing-problem/issues
 [product-screenshot]: images/visual.png
+[product-screenshot1]: images/output.png
