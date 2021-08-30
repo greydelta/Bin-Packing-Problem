@@ -11,7 +11,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/greydelta/bin-packing-problem">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="images/logo.png" alt="Logo">
   </a>
 
 <h3 align="center">Bin Packing Problem</h3>
