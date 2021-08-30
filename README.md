@@ -75,7 +75,7 @@ The program will then generate the solutions based on the 2 algorithms:
 
 ### Built With
 
-* [Java](https://www.java.com/en/)
+[![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=java&logoColor=white)](https://www.java.com/en/) 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -87,7 +87,9 @@ The program will then generate the solutions based on the 2 algorithms:
 
 ### Prerequisites
 
-* Recommended IDE: [Eclipse](https://www.eclipse.org/ide/)
+* Recommended IDE: 
+
+    [![Eclipse](https://img.shields.io/badge/Eclipse-FE7A16.svg?style=for-the-badge&logo=Eclipse&logoColor=white)](https://www.eclipse.org/ide/)
 
 
 
